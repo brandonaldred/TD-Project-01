@@ -90,6 +90,8 @@ const getBackgroundColor = () => backgroundColors[Math.floor(Math.random() * bac
 /***
  * `printQuote` function
 ***/
+const startInterval = () => intervalId = setInterval(() => { printQuote() }, 8000);
+
 const printQuote = () => {
   //Begin the countdown and change quotes.
   clearInterval(intervalId);
@@ -112,29 +114,11 @@ const printQuote = () => {
 
   //Setting a custom background color on the body
   document.body.style.background = backgroundGenerator();
-
+  startInterval();
 }
 
 //Begin the countdown and changing quotes.
-let intervalId = setInterval(() => { printQuote() }, 8000);
-
-/*
-Timer V2: Setting the timer to change the quote and bg every 8 seconds 
-This was so it didn't pile up and give an epileptic effect. Just need to call this function in the global scope,
-and then again in the printQuote function.
----------------------
-function setTimer() {
-  //Storing the interval Id in a variable so it can be cleared.
-  let intervalId = setTimeout(() => { printQuote() }, 8000);
-  //Check to see how many times the interval has ran, and clear all intervals up until current.
-  if (intervalId > 1) {
-    for (let i = 1; i < intervalId; i++) { 
-      clearInterval(i);
-    }
-  }
-}
-
-*/
+startInterval();
 
 /***
  * click event listener for the print quote button
